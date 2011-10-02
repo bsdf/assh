@@ -1,0 +1,3 @@
+[submodule "tamarin-redux"]
+	path = tamarin-redux
+	url = git@github.com:bsdf/trx.git
