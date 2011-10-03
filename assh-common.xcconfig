@@ -43,7 +43,7 @@ GCC_PRECOMPILE_PREFIX_HEADER = YES
 
 // shell is included in this search path only for avmshell-features.h, included from platform/VMPI.h
 //HEADER_SEARCH_PATHS=../../../VMPI ../../../vmbase ../../../core ../../../MMgc ../../../pcre ../../../extensions .. ../.. ../../../shell ../../../other-licenses ../../../generated
-HEADER_SEARCH_PATHS=tamarin-redux/VMPI tamarin-redux/vmbase tamarin-redux/core tamarin-redux/MMgc tamarin-redux/pcre tamarin-redux/extensions tamarin-redux/shell tamarin-redux/other-licenses tamarin-redux/generated tamarin-redux/platform tamarin-redux
+HEADER_SEARCH_PATHS=tamarin-redux/AVMPI tamarin-redux/VMPI tamarin-redux/vmbase tamarin-redux/core tamarin-redux/MMgc tamarin-redux/pcre tamarin-redux/extensions tamarin-redux/shell tamarin-redux/other-licenses tamarin-redux/generated tamarin-redux/platform tamarin-redux tamarin-redux/eval
 
 
 // The following line should define all controlling cpp macros except DEBUG, _DEBUG, and DEBUGGER
