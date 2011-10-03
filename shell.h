@@ -6,6 +6,7 @@
 
 int         run_shell( int argc, char **argv );
 void        run_repl();
+void        parse_args( int argc, char **argv, avmshell::ShellSettings settings );
 
 char       *get_input();
 const char *get_term_prompt();

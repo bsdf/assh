@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF72B099143A47E7001A9A0B /* shellcoreimpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF72B098143A47E7001A9A0B /* shellcoreimpl.cpp */; };
 		FFEC2963143A0E5400DA6CD3 /* atom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC273D143A0E5400DA6CD3 /* atom.cpp */; };
 		FFEC2964143A0E5400DA6CD3 /* AbcData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC2741143A0E5400DA6CD3 /* AbcData.cpp */; };
 		FFEC2965143A0E5400DA6CD3 /* AbcEnv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC2742143A0E5400DA6CD3 /* AbcEnv.cpp */; };
@@ -367,7 +368,6 @@
 		FFEC2B0A143A187A00DA6CD3 /* ThreadsPosix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC2921143A0E5400DA6CD3 /* ThreadsPosix.cpp */; };
 		FFEC2B0B143A187A00DA6CD3 /* MacDebugUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC2922143A0E5400DA6CD3 /* MacDebugUtils.cpp */; };
 		FFEC2B0C143A187A00DA6CD3 /* swf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC2935143A0E5400DA6CD3 /* swf.cpp */; };
-		FFEC2B0E143A187A00DA6CD3 /* avmshell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC2937143A0E5400DA6CD3 /* avmshell.cpp */; };
 		FFEC2B0F143A187A00DA6CD3 /* ConsoleOutputStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC2939143A0E5400DA6CD3 /* ConsoleOutputStream.cpp */; };
 		FFEC2B10143A187A00DA6CD3 /* DebugCLI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC293B143A0E5400DA6CD3 /* DebugCLI.cpp */; };
 		FFEC2B11143A187A00DA6CD3 /* FileInputStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC293D143A0E5400DA6CD3 /* FileInputStream.cpp */; };
@@ -412,9 +412,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FF72B097143A45DE001A9A0B /* avmshell */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = avmshell; path = "../Library/Developer/Xcode/DerivedData/assh-cusmgnoswcerlubhlvfmmtswbcft/Build/Products/Debug/avmshell"; sourceTree = "<group>"; };
+		FF72B098143A47E7001A9A0B /* shellcoreimpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shellcoreimpl.cpp; sourceTree = "<group>"; };
+		FF72B09B143A49D5001A9A0B /* avmshell */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = avmshell; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFEC271B143A0DA700DA6CD3 /* assh-common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "assh-common.xcconfig"; sourceTree = "<group>"; };
 		FFEC271C143A0DA700DA6CD3 /* assh.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = assh.xcconfig; sourceTree = "<group>"; };
-		FFEC2725143A0DFA00DA6CD3 /* assh */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = assh; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFEC273C143A0E5400DA6CD3 /* atom-inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "atom-inlines.h"; sourceTree = "<group>"; };
 		FFEC273D143A0E5400DA6CD3 /* atom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = atom.cpp; sourceTree = "<group>"; };
 		FFEC273E143A0E5400DA6CD3 /* atom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = atom.h; sourceTree = "<group>"; };
@@ -1010,6 +1012,7 @@
 			isa = PBXGroup;
 			children = (
 				FFEC2A57143A186300DA6CD3 /* assh.cpp */,
+				FF72B098143A47E7001A9A0B /* shellcoreimpl.cpp */,
 				FFEC2A58143A186300DA6CD3 /* shell.cpp */,
 				FFEC2A59143A186300DA6CD3 /* shell.h */,
 				FFEC2A5A143A186300DA6CD3 /* util.cpp */,
@@ -1052,8 +1055,9 @@
 		FFEC2726143A0DFA00DA6CD3 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				FFEC2725143A0DFA00DA6CD3 /* assh */,
+				FF72B097143A45DE001A9A0B /* avmshell */,
 				FFEC2B25143A187A00DA6CD3 /* assh */,
+				FF72B09B143A49D5001A9A0B /* avmshell */,
 			);
 			name = bin;
 			sourceTree = "<group>";
@@ -1820,7 +1824,7 @@
 			);
 			name = avmshell;
 			productName = assh;
-			productReference = FFEC2725143A0DFA00DA6CD3 /* assh */;
+			productReference = FF72B09B143A49D5001A9A0B /* avmshell */;
 			productType = "com.apple.product-type.tool";
 		};
 		FFEC2A5F143A187A00DA6CD3 /* assh */ = {
@@ -1860,8 +1864,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FFEC2724143A0DFA00DA6CD3 /* avmshell */,
 				FFEC2A5F143A187A00DA6CD3 /* assh */,
+				FFEC2724143A0DFA00DA6CD3 /* avmshell */,
 			);
 		};
 /* End PBXProject section */
@@ -2237,7 +2241,6 @@
 				FFEC2B0A143A187A00DA6CD3 /* ThreadsPosix.cpp in Sources */,
 				FFEC2B0B143A187A00DA6CD3 /* MacDebugUtils.cpp in Sources */,
 				FFEC2B0C143A187A00DA6CD3 /* swf.cpp in Sources */,
-				FFEC2B0E143A187A00DA6CD3 /* avmshell.cpp in Sources */,
 				FFEC2B0F143A187A00DA6CD3 /* ConsoleOutputStream.cpp in Sources */,
 				FFEC2B10143A187A00DA6CD3 /* DebugCLI.cpp in Sources */,
 				FFEC2B11143A187A00DA6CD3 /* FileInputStream.cpp in Sources */,
@@ -2254,6 +2257,7 @@
 				FFEC2B1C143A187A00DA6CD3 /* assh.cpp in Sources */,
 				FFEC2B1D143A187A00DA6CD3 /* shell.cpp in Sources */,
 				FFEC2B1E143A187A00DA6CD3 /* util.cpp in Sources */,
+				FF72B099143A47E7001A9A0B /* shellcoreimpl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2265,7 +2269,6 @@
 			baseConfigurationReference = FFEC271C143A0DA700DA6CD3 /* assh.xcconfig */;
 			buildSettings = {
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 			};
 			name = Debug;
 		};
@@ -2274,7 +2277,6 @@
 			baseConfigurationReference = FFEC271C143A0DA700DA6CD3 /* assh.xcconfig */;
 			buildSettings = {
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 			};
 			name = Release;
 		};
@@ -2293,10 +2295,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2313,10 +2311,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
