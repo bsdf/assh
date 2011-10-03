@@ -1,9 +1,9 @@
-//
-//  util.c
-//  assh
-//
-//  Created by David Semke on 10/2/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
+#include "util.h"
+#include <string.h>
 
-#include <stdio.h>
+int eq( char *a, char *b ) {
+	if ( strcmp( a, b ) == 0)
+		return 1;
+	else
+		return 0;
+}
