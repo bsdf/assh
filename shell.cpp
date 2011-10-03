@@ -155,7 +155,7 @@ void handle_input(char* line) {
 void eval_string( char* str ) {
     avmplus::String* input;
     input = repl_core->newStringLatin1( str );
-//    core->evaluateString(input, record_time);
+    repl_core->evaluateString( input, false );
 }
 
 void print_help() {
