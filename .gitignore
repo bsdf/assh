@@ -83,4 +83,3 @@ utils/wmremote/wmrunner/Release/**
 *.ipch
 .settings/**
 *.komodoproject
-*.xcodeproj/*
