@@ -5,6 +5,7 @@
 #include "eval.h"
 
 using namespace avmshell;
+using namespace avmplus;
 
 int   run_shell( int argc, char **argv );
 void  run_repl();
@@ -19,6 +20,13 @@ char *get_input();
 char *get_term_prompt();
 void  handle_input( char* line );
 void  eval_string( char* str );
+
+void   setup_readline();
+char **readline_complete( const char *text, int start, int end );
+char  *command_generator( const char *text, int state );
+
+void fstring( String *str );
+void print_strings();
 
 void  print_help();
 

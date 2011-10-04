@@ -124,7 +124,8 @@ void single_worker_helper( ShellCore *shell, ShellSettings &settings )
 static int repl_should_run = 1;
 void run_repl() {
 	char* line;
-	
+	setup_readline();
+    
 	while( repl_should_run )
 	{
 		line = get_input();
@@ -134,6 +135,50 @@ void run_repl() {
 		}
 		else return;
 	}
+}
+
+void setup_readline() {
+    rl_readline_name = "assh";
+    rl_attempted_completion_function = readline_complete;
+}
+
+char **readline_complete( const char *text, int start, int end )
+{
+    char **matches;
+    
+    matches = (char **)NULL;
+    
+    if (start == 0)
+        matches = rl_completion_matches (text, command_generator);
+        
+    return (matches);
+}
+
+char *command_generator ( const char *text, int state )
+{
+    static int list_index, len;
+    char *name;
+    
+    /* If this is a new word to complete, initialize now.  This includes
+     saving the length of TEXT for efficiency, and initializing the index
+     variable to 0. */
+    if (!state)
+    {
+        list_index = 0;
+        len = strlen (text);
+    }
+    
+    /* Return the next name which partially matches from the command list. */
+//    while (name = commands[list_index].name)
+//    {
+//        list_index++;
+//        
+//        if (strncmp (name, text, len) == 0)
+//            return (dupstr(name));
+//    }
+    
+    /* If no names matched, then return NULL. */
+    return ((char *)NULL);
 }
 
 static char *line_read = (char *)NULL;
@@ -152,6 +197,8 @@ char *get_input() {
 	return line_read;
 }
 
+
+
 char *get_term_prompt() {
 	return "~assh> ";
 }
@@ -166,6 +213,21 @@ void handle_input(char* line) {
 	else {
 		eval_string( line );
 	}
+}
+
+void fstring( String *str ) {
+    int len = str->length();
+    
+    for( int i = 0; i < len; i++ )
+        printf( "%c", str->charAt(i) );
+
+    printf( "\n" );
+}
+
+void print_strings() {
+    for( int i=0; i<2048; i++ ) {
+        fstring( repl_core->strings[i] );
+    }
 }
 
 void eval_string( char* str ) {
