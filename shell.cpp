@@ -13,7 +13,17 @@ using namespace avmshell;
 avmshell::ShellCore* repl_core;
 
 int run_shell( int argc, char **argv ) {
-    Shell::run( argc, argv );
+	gc_init();
+	
+    {
+        MMGC_ENTER_RETURN(OUT_OF_MEMORY);
+        
+        ShellSettings settings;
+        parse_args( argc, argv, settings );
+        single_worker(settings);
+    }
+	
+	gc_end();
     return 0;
 }
 
@@ -21,35 +31,21 @@ void parse_args( int argc, char **argv, ShellSettings settings ) {
     
 }
 
-int Shell::run(int argc, char *argv[]) {
-    MMgc::GCHeap::EnterLockInit();
+void gc_init() {
+	MMgc::GCHeap::EnterLockInit();
     MMgc::GCHeapConfig conf;
     MMgc::GCHeap::Init(conf);
-
-    {
-        MMGC_ENTER_RETURN(OUT_OF_MEMORY);
-        
-        ShellSettings settings;
-        parse_args( argc, argv, settings );
-        
-        if (settings.numworkers == 1 && settings.numthreads == 1 && settings.repeats == 1)
-            Shell::singleWorker(settings);
-        else
-            Shell::multiWorker(settings);
-    }
-
-    MMgc::GCHeap::Destroy();
-    MMgc::GCHeap::EnterLockDestroy();
-    return 0;
+	MMgc::GCHeap::EnterLockInit();
 }
 
-// In the single worker case everything is run on the main thread.  This
-// is where we handler the repl, selftest, and projectors.
+void gc_end() {
+	MMgc::GCHeap::Destroy();
+    MMgc::GCHeap::EnterLockDestroy();
+}
 
-/* static */
-void Shell::singleWorker(ShellSettings& settings)
+void single_worker( ShellSettings settings )
 {
-    MMgc::GCConfig gcconfig;
+	MMgc::GCConfig gcconfig;
     if (settings.gcthreshold != 0)
         // (zero means use default value already in gcconfig.)
         gcconfig.collectionThreshold = settings.gcthreshold;
@@ -62,16 +58,15 @@ void Shell::singleWorker(ShellSettings& settings)
     {
         MMGC_GCENTER(gc);
         repl_core = new ShellCoreImpl( gc, settings, true );
-        Shell::singleWorkerHelper( repl_core, settings );
+        single_worker_helper( repl_core, settings );
         delete repl_core;
     }
     mmfx_delete( gc );
 }
 
-/* static */
-void Shell::singleWorkerHelper(ShellCore* shell, ShellSettings& settings)
+void single_worker_helper( ShellCore *shell, ShellSettings &settings )
 {
-    if (!shell->setup(settings))
+	if (!shell->setup(settings))
         exit(1);
     
 #ifdef AVMSHELL_PROJECTOR_SUPPORT
@@ -136,7 +131,7 @@ char *get_input() {
 	return line_read;
 }
 
-const char *get_term_prompt() {
+char *get_term_prompt() {
 	return "~assh> ";
 }
 
@@ -165,3 +160,14 @@ void print_help() {
 avmshell::Platform* avmshell::Platform::GetInstance() {
 	return (avmshell::Platform *)NULL;
 }
+
+void avmshell::ConsoleOutputStream::write(const char* utf8)
+{
+	printf( "%s", utf8 );
+}
+
+void avmshell::ConsoleOutputStream::writeN(const char* utf8, size_t count)
+{
+	printf( "%s", utf8 );
+}
+

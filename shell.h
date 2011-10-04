@@ -4,15 +4,22 @@
 #include "avmshell.h"
 #include "eval.h"
 
-int         run_shell( int argc, char **argv );
-void        run_repl();
-void        parse_args( int argc, char **argv, avmshell::ShellSettings settings );
+using namespace avmshell;
 
-char       *get_input();
-const char *get_term_prompt();
-void        handle_input( char* line );
-void		eval_string( char* str );
+int   run_shell( int argc, char **argv );
+void  run_repl();
+void  parse_args( int argc, char **argv, ShellSettings settings );
+void  single_worker( ShellSettings settings );
+void  single_worker_helper( ShellCore *shell, ShellSettings &settings );
 
-void        print_help();
+void  gc_init();
+void  gc_end();
+
+char *get_input();
+char *get_term_prompt();
+void  handle_input( char* line );
+void  eval_string( char* str );
+
+void  print_help();
 
 #endif
