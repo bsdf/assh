@@ -412,7 +412,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FF72B097143A45DE001A9A0B /* avmshell */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = avmshell; path = "../Library/Developer/Xcode/DerivedData/assh-cusmgnoswcerlubhlvfmmtswbcft/Build/Products/Debug/avmshell"; sourceTree = "<group>"; };
 		FF72B098143A47E7001A9A0B /* shellcoreimpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shellcoreimpl.cpp; sourceTree = "<group>"; };
 		FF72B09B143A49D5001A9A0B /* avmshell */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = avmshell; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFEC271B143A0DA700DA6CD3 /* assh-common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "assh-common.xcconfig"; sourceTree = "<group>"; };
@@ -1055,7 +1054,6 @@
 		FFEC2726143A0DFA00DA6CD3 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				FF72B097143A45DE001A9A0B /* avmshell */,
 				FFEC2B25143A187A00DA6CD3 /* assh */,
 				FF72B09B143A49D5001A9A0B /* avmshell */,
 			);
