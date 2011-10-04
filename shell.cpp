@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <unistd.h>
+#include <getopt.h>
 
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -10,7 +11,7 @@
 using namespace avmplus;
 using namespace avmshell;
 
-avmshell::ShellCore* repl_core;
+ShellCore* repl_core;
 
 int run_shell( int argc, char **argv ) {
 	gc_init();
@@ -28,7 +29,36 @@ int run_shell( int argc, char **argv ) {
 }
 
 void parse_args( int argc, char **argv, ShellSettings settings ) {
+    static struct option opts[] =
+    {
+        { "repl", no_argument, NULL, 'r' },
+        { "eval", required_argument, NULL, 'e' }
+    };
     
+    int c, i;
+    while ( (c = getopt_long( argc, argv, "r::e:", opts, &i )) != -1 ) {
+        switch (c)
+        {
+            case 'r':
+                settings.do_repl = true;
+                break;
+                
+            case 'e':
+                printf( "-e not supported yet.\n" );
+                exit(-1);
+                break;
+                
+            default:
+                exit(-1);
+                break;
+        }
+    }
+    
+    // treat extra arguments as filenames:
+    if ( optind < argc ) {
+        settings.filenames = &argv[optind];
+        settings.numfiles  =  argc-optind ;
+    }
 }
 
 void gc_init() {
@@ -68,15 +98,6 @@ void single_worker_helper( ShellCore *shell, ShellSettings &settings )
 {
 	if (!shell->setup(settings))
         exit(1);
-    
-#ifdef AVMSHELL_PROJECTOR_SUPPORT
-    if (settings.do_projector) {
-        AvmAssert(settings.programFilename != NULL);
-        int exitCode = shell->executeProjector(settings.programFilename);
-        if (exitCode != 0)
-            exit(exitCode);
-    }
-#endif
     
 #ifdef VMCFG_AOT
     int exitCode = shell->evaluateFile(settings, NULL);
