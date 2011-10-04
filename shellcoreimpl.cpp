@@ -46,6 +46,8 @@
 #include "extensions-tracers.hh"
 #include "avmshell-tracers.hh"
 
+#define LOGGING(x)
+
 namespace avmshell
 {
     ShellSettings::ShellSettings()
@@ -109,112 +111,6 @@ namespace avmshell
         AvmCore::setStackLimit(minstack);
     }
 
-//    int Shell::run(int argc, char *argv[])
-//    {
-//        MMgc::GCHeap::EnterLockInit();
-//        MMgc::GCHeapConfig conf;
-//        //conf.verbose = AvmCore::DEFAULT_VERBOSE_ON;
-//        MMgc::GCHeap::Init(conf);
-//        
-//        // Note that output from the command line parser (usage messages, error messages,
-//        // and printed version number / feature list) will not go to the log file.  We
-//        // could fix this if it's a hardship.
-//        
-//        {
-//            MMGC_ENTER_RETURN(OUT_OF_MEMORY);
-//            ShellSettings settings;
-//            parseCommandLine(argc, argv, settings);
-//            
-//            {
-//                // code coverage/cheap test
-//                MMGC_ENTER_SUSPEND;
-//            }
-//            
-//            if (settings.do_log)
-//                initializeLogging(settings.numfiles > 0 ? settings.filenames[0] : "AVMLOG");
-//            
-//#ifdef VMCFG_WORKERTHREADS
-//            if (settings.numworkers == 1 && settings.numthreads == 1 && settings.repeats == 1)
-//                singleWorker(settings);
-//            else
-//                multiWorker(settings);
-//#else
-//            singleWorker(settings);
-//#endif
-//        }
-//        
-//        MMgc::GCHeap::Destroy();
-//        MMgc::GCHeap::EnterLockDestroy();
-//        return 0;
-//    }
-    
-//    /* static */
-//    void Shell::singleWorker(ShellSettings& settings)
-//    {
-//        MMgc::GCConfig gcconfig;
-//        if (settings.gcthreshold != 0)
-//            // (zero means use default value already in gcconfig.)
-//            gcconfig.collectionThreshold = settings.gcthreshold;
-//        gcconfig.exactTracing = settings.exactgc;
-//        gcconfig.markstackAllowance = settings.markstackAllowance;
-//        gcconfig.drc = settings.drc;
-//        gcconfig.mode = settings.gcMode();
-//        gcconfig.validateDRC = settings.drcValidation;
-//        MMgc::GC *gc = mmfx_new( MMgc::GC(MMgc::GCHeap::GetGCHeap(), gcconfig) );
-//        {
-//            MMGC_GCENTER(gc);
-//            ShellCore* shell = new ShellCoreImpl(gc, settings, true);
-//            Shell::singleWorkerHelper(shell, settings);
-//            delete shell;
-//        }
-//        mmfx_delete( gc );
-//    }
-//    
-//    /* static */
-//    void Shell::singleWorkerHelper(ShellCore* shell, ShellSettings& settings)
-//    {
-//        if (!shell->setup(settings))
-//            Platform::GetInstance()->exit(1);
-//        
-//#ifdef VMCFG_SELFTEST
-//        if (settings.do_selftest) {
-//            shell->executeSelftest(settings);
-//            return;
-//        }
-//#endif
-//        
-//#ifdef AVMSHELL_PROJECTOR_SUPPORT
-//        if (settings.do_projector) {
-//            AvmAssert(settings.programFilename != NULL);
-//            int exitCode = shell->executeProjector(settings.programFilename);
-//            if (exitCode != 0)
-//                Platform::GetInstance()->exit(exitCode);
-//        }
-//#endif
-//        
-//#ifdef VMCFG_AOT
-//        int exitCode = shell->evaluateFile(settings, NULL);
-//        if (exitCode != 0)
-//            Platform::GetInstance()->exit(exitCode);
-//        return;
-//#endif
-//        
-//        // For -testswf we must have exactly one file
-//        if (settings.do_testSWFHasAS3 && settings.numfiles != 1)
-//            Platform::GetInstance()->exit(1);
-//        
-//        // execute each abc file
-//        for (int i=0 ; i < settings.numfiles ; i++ ) {
-//            int exitCode = shell->evaluateFile(settings, settings.filenames[i]);
-//            if (exitCode != 0)
-//                Platform::GetInstance()->exit(exitCode);
-//        }
-//        
-//#ifdef VMCFG_EVAL
-//        if (settings.do_repl)
-//            repl(shell);
-//#endif
-//    }
     
     // open logfile based on a filename
     /* static */
@@ -923,8 +819,6 @@ namespace avmshell
         ThreadNode* self;
         
     };
-
-#define LOGGING(x)
 
     /* static */
     void Shell::multiWorker(ShellSettings& settings)

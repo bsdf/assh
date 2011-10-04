@@ -368,7 +368,6 @@
 		FFEC2B0A143A187A00DA6CD3 /* ThreadsPosix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC2921143A0E5400DA6CD3 /* ThreadsPosix.cpp */; };
 		FFEC2B0B143A187A00DA6CD3 /* MacDebugUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC2922143A0E5400DA6CD3 /* MacDebugUtils.cpp */; };
 		FFEC2B0C143A187A00DA6CD3 /* swf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC2935143A0E5400DA6CD3 /* swf.cpp */; };
-		FFEC2B0F143A187A00DA6CD3 /* ConsoleOutputStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC2939143A0E5400DA6CD3 /* ConsoleOutputStream.cpp */; };
 		FFEC2B10143A187A00DA6CD3 /* DebugCLI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC293B143A0E5400DA6CD3 /* DebugCLI.cpp */; };
 		FFEC2B11143A187A00DA6CD3 /* FileInputStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC293D143A0E5400DA6CD3 /* FileInputStream.cpp */; };
 		FFEC2B12143A187A00DA6CD3 /* PosixFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFEC2940143A0E5400DA6CD3 /* PosixFile.cpp */; };
@@ -2239,7 +2238,6 @@
 				FFEC2B0A143A187A00DA6CD3 /* ThreadsPosix.cpp in Sources */,
 				FFEC2B0B143A187A00DA6CD3 /* MacDebugUtils.cpp in Sources */,
 				FFEC2B0C143A187A00DA6CD3 /* swf.cpp in Sources */,
-				FFEC2B0F143A187A00DA6CD3 /* ConsoleOutputStream.cpp in Sources */,
 				FFEC2B10143A187A00DA6CD3 /* DebugCLI.cpp in Sources */,
 				FFEC2B11143A187A00DA6CD3 /* FileInputStream.cpp in Sources */,
 				FFEC2B12143A187A00DA6CD3 /* PosixFile.cpp in Sources */,
